@@ -9,92 +9,96 @@ import models.Layer1 as Layer1
 import models.Network as Network 
 
 example_Network = Network.Network(
-    id="test1",
-    id_short="test1",
+    id="Network",
+    id_short="Network",
 
     KPI=Network.Network_KPI(
-        id="test2",
-        id_short="test2",
-        range=1,
-        target=2,
+        id="Network_KPI",
+        id_short="Network_KPI",
+        range=3,
+        target=5,
         actualValue=3,
-        KPI_Type="green",
+        KPI_Type="OEE",
         Sub_KPI=Network.Sub_KPI(
-            id="test3",
-            id_short="test3",
-            placeholder="green",
+            id="Sub_KPI",
+            id_short="Sub_KPI",
         ),
     ),    
     Product=Network.Network_Product(
-        id="test4",
-        id_short="test4",
-        product_group="green",
+        id="Network_Product",
+        id_short="Network_Product",
+        product_group="Smart Phones",
         BOM=Layer1.BOM(
-            id="test5",
-            id_short="test5",
-            components="test",
-            subcomponents="test",
-            material="test",
+            id="BOM",
+            id_short="BOM",
+            components="Camera",
+            subcomponents="Lense",
+            material="Glass",
         ),
-        name = "test",
+        name = "Camera Lense",
         measurements_in_cm = Network.measurements_in_cm(
-            id_short = "test6",
-            placeholder_list = [3,2],
+            id_short = "measurements_in_cm",
+            measurements_in_cm_list = [2,3],
             
          ),
 
         Material = Network.Material(
-             id_short = "test7",
-             id="test7",
-             name = "test",
-             cost = "test",
+             id_short = "Network_Material",
+             id="Network_Material",
+             name = "Glass",
+             cost = "5",
             ),
         Component = Network.Component(
-             id_short = "test8",
-             id="test8",
-             name = "test",
-             subComponent=Network.subComponent(
-                 id_short="test9",
-                 id="test9",
-                 #placeholder="test",    
+             id_short = "Network_Component",
+             id="Network_Component",
+             name = "glass",
+             subComponent=Network.subComponents(
+                 id_short="Network_subComponents",
+                 id="Network_subComponents",
+                   
              ),
-             cost="test",
-             transfer_price="test",
+             cost="5",
+             transfer_price="2",
              measurements_in_cm=Network.measurements_in_cm(
-                id_short="test10",
-                placeholder_list = [3,2],
+                id_short="Network_measurements_in_cm",
+                measurements_in_cm_list = [2,3],
              ),
-             weight="test",
-             time_stamp_lastprocess="test",
+             weight="3grams",
+             time_stamp_lastprocess="12:00 1.1.24",
         
          ),
-        cost = "test",
-        product_generation = "test",   
+        cost = "5",
+        product_generation = "2nd",   
             
     ),
     Order=Network.Network_Order(
-        id="test21",
-        id_short="test22",
+        id="Network_Order",
+        id_short="Network_Order",
         
-        orderType = "test",
-        quantity= 2,
-        time_of_order= "test",
+        orderType = "Supplier",
+        quantity= 200,
+        time_of_order= "1.1.24",
         required_processes=Layer1.required_processes(
-            id_short= "test",
+            id_short= "required_processes",
         ),
-        position= "test",
-        orderStatus=Network.orderStatus(
-            id_short="test23",
-            status = Network.statusEnum.preparing
-        ),
+        position= "4th",
+        orderStatus=Network.orderStatus.preparing,
+        # (
+        #     #id_short="Network.orderStatus",
+        #     status= Network.orderStatus.in_progress,
 
-        priority= "test",
-        OrderType = Network.OrderType(
-            id_short="test24",
+        # ),
 
-        )
+        priority= "medium",
+        OrderType = Network.OrderType.ProductionOrder
+        # (
+        #     #id_short="Network.OrderType",
+        #     type = Network.OrderType.SupplierOrder,
 
-    )
+        # )
+
+    ),
+)
 #     Process = Network.Network_Process(
 #         id_short="test31",
 #         id="test31",
@@ -120,7 +124,7 @@ example_Network = Network.Network(
 
 
 #     )
- )
+ 
 
     
 

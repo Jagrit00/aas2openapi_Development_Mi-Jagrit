@@ -16,7 +16,7 @@ class BOM(SubmodelElementCollection):
     components: str
     subcomponents: str
     material: str
-
+    #only one component of each or should it be a list ?
 class Product(Submodel):
     product_group:str
     BOM: BOM

@@ -14,16 +14,20 @@ from models.Layer1 import Capability
 
 
 class Sub_KPI(SubmodelElementCollection):
-    placeholder: str
-    
+    pass
+    #check if using pass causes errors
+    #why is this empty class needed ?
+
 class Network_KPI(KPI):
     KPI_Type: str
-    Sub_KPI: Sub_KPI
-
+    #Sub_KPI:etwork_KPI] Optional[N
+    Sub_KPI:Sub_KPI
 #------------------------------------------------------#
 
 class measurements_in_cm(SubmodelElementCollection):
-   placeholder_list = list()
+   measurements_in_cm_list = list()
+   #should this have multiple lists for height, width etc ?
+   #or list contains the dimensions for one instance, with defined order ?
 
 
 class Material(SubmodelElementCollection):
@@ -31,13 +35,14 @@ class Material(SubmodelElementCollection):
     name: str
     cost: str
 
-class subComponent(SubmodelElementCollection):
-    #placeholder: str
+class subComponents(SubmodelElementCollection):
+    #check pass and use of this empty class
     pass
+
 
 class Component(SubmodelElementCollection):
     name:str
-    subComponent:subComponent
+    subComponent:subComponents
     cost:str
     transfer_price:str
     measurements_in_cm:measurements_in_cm
@@ -53,34 +58,24 @@ class Network_Product(Product):
     cost: str
     product_generation: str
 #--------------------------------------------------------#
-class statusEnum(Enum):
-    preparing = 1
-    in_progress=2
-
-class orderStatus(SubmodelElementCollection):
     
-    # preparing = 1
-    # in_progress = 2
-    # finished = 3
-    # failed = 4
-    Status = statusEnum
-    neifu = []
-   # Status = ["preparing","in_progress","finished","failed"]
-    # class status (Enum):
-    #     preparing = 1
-    #     in_progress = 2
-    #     finished = 3
-    #     failed = 4
-   
+class orderStatus(str,Enum):
+    preparing = "preparing"
+    in_progress= "in progress"
+    finsihed = "finished"
+    failed = "failed"
+    status:str
+    #not used any defined models or list, AASX specified SML
 
 
-class OrderType(SubmodelElementCollection):
-    pass
-    #SuppliedOrder: str
-    #CustomOrder: str
-    #ProductionOrder: str
-    #TransportOrder: str
-    #StoreOrder:str
+class OrderType(str,Enum):
+    
+    SupplierOrder = "SupplierOrder"
+    CustomerOrder = "CustomerOrder" 
+    ProductionOrder = "ProductionOrder"
+    TransportOrder = "TransportOrder"
+    StoreOrder = "StoreOrder"
+    #not used any defined models or list, AASX specified SML
 
 class Network_Order(Order):
     position:str
@@ -89,21 +84,22 @@ class Network_Order(Order):
     OrderType:OrderType
 #----------------------------------------------------------#
 class subProcesses(SubmodelElementCollection):
+   #check pass and use of this empty class
    pass 
 
 
-class ProcessStatus(SubmodelElementCollection):
-    pass
-    #preparing: str
-    #in_progress: str
-    #finsihed: str
-    #failed: str
+class ProcessStatus(str,Enum):
+    preparing = "preparing"
+    in_progress= "in progress"
+    finsihed = "finished"
+    failed = "failed"
+    #not used any defined models or list, AASX specified SML
 
 
-class ProcessType(SubmodelElementCollection):
+class ProcessType(str,Enum):
 
-    Transport: str
-    Production: str
+    Transport = "Transport"
+    Production = "Production"
 
 class Network_Process(Process):
     subProcesses:subProcesses
@@ -113,38 +109,41 @@ class Network_Process(Process):
     processType:ProcessType
 #------------------------------------------------------#
 class subResources(SubmodelElementCollection):
-    placeholder: str
+    #check pass and use of this empty class
+   pass 
 
-class OrganisationType(SubmodelElementCollection):
-    InternalOrga:str
-    ExternalOrga:str
+class OrganisationType(str,Enum):
+    InternalOrga = "InternalOrga"
+    ExternalOrga = "ExternalOrga"
 
 class Organisation(SubmodelElementCollection):
-    OrganisationType:List[OrganisationType]
-
-class ResourceType(SubmodelElementCollection):
-    Network:str
-    TransportUnit:str
-    LocationNode:str
+    OrganisationType:OrganisationType
+#why use this class with OrganisationType inside and not just one class ?
+class ResourceType(str,Enum):
+    Network = "Network"
+    TransportUnit = "TransportUnit"
+    LocationNode = "LocationNode"
 
 class Network_Resource(Resource):
     subResources:subResources
     Organisation:Organisation
-    ResourceType:List[ResourceType]
+    ResourceType:ResourceType
 #---------------------------------------------------------#
 class subCapabilities(SubmodelElementCollection):
-    placeholder: str
+     #check pass and use of this empty class
+   pass 
 
-class inherentCapability(SubmodelElementCollection):
-    TransportCapability:str
-    ProductionCapability:str
+class inherentCapability(str,Enum):
+    TransportCapability = "TransportCapability"
+    ProductionCapability = "ProductionCapability"
 
 class CapabilityType(SubmodelElementCollection):
     subCapabilities:subCapabilities
-    inherentCapability:List[inherentCapability]
+    inherentCapability:inherentCapability
 
 class Network_Capability(Capability):
     CapabilityType:CapabilityType
+    #why use a seperate class for only one class inside it ?
 
     
 #-------------------------------------------------------#
